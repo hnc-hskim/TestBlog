@@ -20,17 +20,17 @@ pipeline {
     timeout(time: 20, unit: 'MINUTES') 
   }
   stages {
-    stage('Build') {
-      steps {
-          sh 'npm install'
-          sh 'CI=false npm run build'
-      }
-    } 
     stage("Checkout") {
         steps {
             checkout scm
         }
     }
+    stage('Build') {
+      steps {
+          sh 'npm install'
+          sh 'CI=false npm run build'
+      }
+    }    
     stage("Docker Build") {
         steps {
             // This uploads your application's source code and performs a binary build in OpenShift
